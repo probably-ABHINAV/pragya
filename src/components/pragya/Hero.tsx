@@ -25,11 +25,15 @@ function numberToWords(n: number): string {
 }
 
 export function Hero() {
+  const [mounted, setMounted] = useState(false);
   const [now, setNow] = useState(new Date());
+
   useEffect(() => {
+    setMounted(true);
     const id = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(id);
   }, []);
+
   const t = diffParts(BIRTHDAY, now);
   const msg = dailyMessages[Math.floor(now.getTime() / 86400000) % dailyMessages.length];
 
@@ -68,18 +72,37 @@ export function Hero() {
 
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9, duration: 1.4 }}
-          className="mt-12"
+          className="mt-12 flex flex-col items-center"
         >
-          <p className="font-display italic text-parchment text-2xl sm:text-3xl md:text-4xl leading-snug tracking-wide">
-            <span className="text-gold tabular-nums">{numberToWords(t.days)}</span> days,
-            <span className="text-gold tabular-nums"> {numberToWords(t.hours)}</span> hours,
-            <br className="hidden sm:block" />
-            <span className="text-gold tabular-nums"> {numberToWords(t.minutes)}</span> minutes
-            <span className="text-parchment/70"> until you</span>
-          </p>
-          <p className="mt-4 font-mono text-parchment/40 text-xs tracking-widest tabular-nums">
-            {String(t.days).padStart(3, "0")}:{String(t.hours).padStart(2, "0")}:{String(t.minutes).padStart(2, "0")}:{String(t.seconds).padStart(2, "0")}
-            <span className="ml-3 uppercase tracking-[0.3em] text-[10px]">31 · 07 · 2026</span>
+          {mounted ? (
+            <div className="flex items-baseline gap-3 sm:gap-5 md:gap-7 font-display italic text-gold">
+              <div className="flex flex-col items-center">
+                <span className="text-5xl sm:text-6xl md:text-7xl tabular-nums leading-none">{String(t.days).padStart(3, "0")}</span>
+                <span className="eyebrow mt-3 text-[10px] sm:text-xs text-parchment/60 uppercase tracking-[0.3em]">Days</span>
+              </div>
+              <span className="text-4xl sm:text-5xl md:text-6xl text-gold/30 -translate-y-5">:</span>
+              <div className="flex flex-col items-center">
+                <span className="text-5xl sm:text-6xl md:text-7xl tabular-nums leading-none">{String(t.hours).padStart(2, "0")}</span>
+                <span className="eyebrow mt-3 text-[10px] sm:text-xs text-parchment/60 uppercase tracking-[0.3em]">Hours</span>
+              </div>
+              <span className="text-4xl sm:text-5xl md:text-6xl text-gold/30 -translate-y-5">:</span>
+              <div className="flex flex-col items-center">
+                <span className="text-5xl sm:text-6xl md:text-7xl tabular-nums leading-none">{String(t.minutes).padStart(2, "0")}</span>
+                <span className="eyebrow mt-3 text-[10px] sm:text-xs text-parchment/60 uppercase tracking-[0.3em]">Mins</span>
+              </div>
+              <span className="text-4xl sm:text-5xl md:text-6xl text-gold/30 -translate-y-5">:</span>
+              <div className="flex flex-col items-center">
+                <span className="text-5xl sm:text-6xl md:text-7xl tabular-nums leading-none">{String(t.seconds).padStart(2, "0")}</span>
+                <span className="eyebrow mt-3 text-[10px] sm:text-xs text-parchment/60 uppercase tracking-[0.3em]">Secs</span>
+              </div>
+            </div>
+          ) : (
+            <div className="h-[88px] sm:h-[104px] md:h-[116px] flex items-center justify-center">
+              <span className="text-gold/40 text-xl font-display italic tracking-widest">Calculating time...</span>
+            </div>
+          )}
+          <p className="mt-8 font-display italic text-parchment/70 text-2xl sm:text-3xl">
+            until you
           </p>
         </motion.div>
 
