@@ -18,8 +18,23 @@ import { A11yProvider } from "@/components/pragya/A11yPanel";
 import { ProgressProvider } from "@/hooks/useProgress";
 import { ProgressHUD } from "@/components/pragya/ProgressHUD";
 import { AudioProgressBridge } from "@/components/pragya/AudioProgressBridge";
+import { useEffect } from "react";
+import { BIRTHDAY } from "@/lib/countdown";
 
 export default function Page() {
+  useEffect(() => {
+    const checkTheme = () => {
+      if (Date.now() >= BIRTHDAY.getTime()) {
+        document.documentElement.setAttribute("data-theme", "birthday");
+      } else {
+        document.documentElement.removeAttribute("data-theme");
+      }
+    };
+    checkTheme();
+    const id = setInterval(checkTheme, 1000);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <PassphraseGate>
       <A11yProvider>
