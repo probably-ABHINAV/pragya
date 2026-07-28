@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import confetti from "canvas-confetti";
 import { gameQuestions } from "@/data/pragya";
-import { ChapterFrame, SectionReveal } from "./ChapterFrame";
+import { SectionReveal } from "./ChapterFrame";
 
 function shuffle<T>(a: T[]): T[] {
   return [...a].sort(() => Math.random() - 0.5);
@@ -31,7 +31,7 @@ export function GuessGame() {
   const next = () => { setPicked(null); setI((n) => (n + 1) % gameQuestions.length); };
 
   return (
-    <ChapterFrame id="game" index={7} title="Guess where this was taken" subtitle="A tiny game. Right answers unfold a secret.">
+    <div className="w-full">
       <SectionReveal>
         <div className="max-w-2xl mx-auto">
           {/* Polaroid */}
@@ -45,7 +45,7 @@ export function GuessGame() {
               style={{ transform: "rotate(-2deg)" }}
             >
               <div className="aspect-[4/3] overflow-hidden">
-                <img src={q.photo_url} alt="" className="w-full h-full object-cover grayscale-[0.1]" />
+                <img src={q.photo_url} alt="" className="w-full h-full object-cover object-[center_20%] grayscale-[0.1]" />
               </div>
               <p className="mt-4 font-hand text-[oklch(0.32_0.10_30)] text-center text-lg">where were we?</p>
             </motion.div>
@@ -99,6 +99,6 @@ export function GuessGame() {
           </AnimatePresence>
         </div>
       </SectionReveal>
-    </ChapterFrame>
+    </div>
   );
 }

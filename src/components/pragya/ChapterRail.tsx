@@ -6,12 +6,13 @@ const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
 
 const chapters = [
   { id: "hero", label: "Until You" },
-  { id: "daily", label: "Daily Notes" },
+
   { id: "songs", label: "Our Songs" },
   { id: "story", label: "Our Story" },
   { id: "vault", label: "Memory Vault" },
+  { id: "film", label: "The Film" },
   { id: "letters", label: "Letters" },
-  { id: "game", label: "One Small Game" },
+  { id: "game", label: "Games" },
   { id: "footer", label: "Yours" },
 ];
 

@@ -45,30 +45,30 @@ export const dailyMessages: string[] = [
 ];
 
 export const songs: Song[] = [
-  { id: "s1", title: "Our First Song", artist: "Placeholder Artist", audio_url: silentAudio, cover_url: img("1470229722913-7c0e2dbbafd3", 400, 400), order: 1 },
-  { id: "s2", title: "Late Drive Home", artist: "Placeholder Artist", audio_url: silentAudio, cover_url: img("1511671782779-c97d3d27a1d4", 400, 400), order: 2 },
-  { id: "s3", title: "Kitchen Slow Dance", artist: "Placeholder Artist", audio_url: silentAudio, cover_url: img("1514320291840-2e0a9bf2a9ae", 400, 400), order: 3 },
-  { id: "s4", title: "Rain On Your Window", artist: "Placeholder Artist", audio_url: silentAudio, cover_url: img("1499415479124-43c32433a620", 400, 400), order: 4 },
-  { id: "s5", title: "The Quiet One", artist: "Placeholder Artist", audio_url: silentAudio, cover_url: img("1493225457124-a3eb161ffa5f", 400, 400), order: 5 },
+  { id: "s1", title: "Piyu Bole", artist: "Shreya Ghoshal, Sonu Nigam", audio_url: "/audio/piyu-bole.mp3", cover_url: "/photos/photo_1.jpg", order: 1 },
+  { id: "s2", title: "Pal Pal Dil Ke Paas", artist: "Kishore Kumar", audio_url: "/audio/pal-pal-dil-ke-paas.mp3", cover_url: "/photos/photo_2.jpg", order: 2 },
+  { id: "s3", title: "Aaoge Jab Tum", artist: "Rashid Khan", audio_url: "/audio/aaoge-jab-tum.mp3", cover_url: "/photos/photo_3.jpg", order: 3 },
+  { id: "s4", title: "Tere Naina", artist: "Shafqat Amanat Ali", audio_url: "/audio/tere-naina.mp3", cover_url: "/photos/photo_4.jpg", order: 4 },
+  { id: "s5", title: "Tere Bina", artist: "A.R. Rahman, Chinmayi", audio_url: "/audio/tere-bina.mp3", cover_url: "/photos/photo_5.jpg", order: 5 },
 ];
 
 export const timeline: TimelineEvent[] = [
-  { id: "t1", date: "The first message", caption: "It started with something small and stupid, and you replied anyway.", photo_url: img("1518199266791-5375a83190b7"), order: 1 },
-  { id: "t2", date: "That first walk", caption: "We got lost on purpose. I remember the light more than the streets.", photo_url: img("1502082553048-f009c37129b9"), order: 2 },
-  { id: "t3", date: "Our first trip", caption: "You fell asleep on my shoulder and I stopped moving for two hours.", photo_url: img("1500530855697-b586d89ba3ee"), order: 3 },
-  { id: "t4", date: "The rainy night", caption: "Wet coats, warm hands, one shared umbrella that didn't really work.", photo_url: img("1519821172144-4f87d85de2a4"), order: 4 },
-  { id: "t5", date: "This year, with you", caption: "Every ordinary evening quietly turned into something I want to keep.", photo_url: img("1494774157365-9e04c6720e47"), order: 5 },
+  { id: "t1", date: "The first message", caption: "It started with something small and stupid, and you replied anyway.", photo_url: "/photos/photo_6.jpg", order: 1 },
+  { id: "t2", date: "That first walk", caption: "We got lost on purpose. I remember the light more than the streets.", photo_url: "/photos/photo_7.jpg", order: 2 },
+  { id: "t3", date: "Our first trip", caption: "You fell asleep on my shoulder and I stopped moving for two hours.", photo_url: "/photos/photo_8.jpg", order: 3 },
+  { id: "t4", date: "The rainy night", caption: "Wet coats, warm hands, one shared umbrella that didn't really work.", photo_url: "/photos/photo_9.jpg", order: 4 },
+  { id: "t5", date: "This year, with you", caption: "Every ordinary evening quietly turned into something I want to keep.", photo_url: "/photos/photo_10.jpg", order: 5 },
 ];
 
 export const memories: MemoryPhoto[] = [
-  { id: "m1", photo_url: img("1519741497674-611481863552"), caption: "Golden hour, borrowed sweater.", order: 1 },
-  { id: "m2", photo_url: img("1500043357865-c6b8827edf10"), caption: "You, laughing at nothing.", order: 2 },
-  { id: "m3", photo_url: img("1517841905240-472988babdf9", 800, 1000), caption: "The look I never got tired of.", order: 3 },
-  { id: "m4", photo_url: img("1494790108377-be9c29b29330"), caption: "First coffee, quiet morning.", order: 4 },
-  { id: "m5", photo_url: img("1524504388940-b1c1722653e1", 800, 600), caption: "Somewhere near the water.", order: 5 },
-  { id: "m6", photo_url: img("1502823403499-6ccfcf4fb453"), caption: "The one I keep as my wallpaper.", order: 6 },
-  { id: "m7", photo_url: img("1521572163474-6864f9cf17ab", 800, 1100), caption: "Every ordinary Tuesday.", order: 7 },
-  { id: "m8", photo_url: img("1531123897727-8f129e1688ce"), caption: "You, and the whole rest of the frame.", order: 8 },
+  { id: "m1", photo_url: "/photos/photo_11.jpg", caption: "Golden hour, borrowed sweater.", order: 1 },
+  { id: "m2", photo_url: "/photos/photo_12.jpg", caption: "You, laughing at nothing.", order: 2 },
+  { id: "m3", photo_url: "/photos/photo_13.jpg", caption: "The look I never got tired of.", order: 3 },
+  { id: "m4", photo_url: "/photos/photo_14.jpg", caption: "First coffee, quiet morning.", order: 4 },
+  { id: "m5", photo_url: "/photos/photo_15.jpg", caption: "Somewhere near the water.", order: 5 },
+  { id: "m6", photo_url: "/photos/photo_16.jpg", caption: "The one I keep as my wallpaper.", order: 6 },
+  { id: "m7", photo_url: "/photos/photo_17.jpg", caption: "Every ordinary Tuesday.", order: 7 },
+  { id: "m8", photo_url: "/photos/photo_18.jpg", caption: "You, and the whole rest of the frame.", order: 8 },
 ];
 
 export const letters: Letter[] = [
@@ -95,16 +95,18 @@ export const letters: Letter[] = [
 export const gameQuestions: GameQuestion[] = [
   {
     id: "g1",
-    photo_url: img("1502602898657-3e91760cbb34", 1000, 700),
+    photo_url: "/photos/photo_19.jpg",
     correct_location: "That trip we almost missed the train for",
     wrong_options: ["The rooftop in December", "Your parents' garden", "The little café near your place"],
     hidden_note: "You were wearing that jacket I love. I remember thinking, 'don't ever forget this.'",
   },
   {
     id: "g2",
-    photo_url: img("1519677100203-a0e668c92439", 1000, 700),
+    photo_url: "/photos/photo_20.jpg",
     correct_location: "The rooftop, our anniversary",
     wrong_options: ["Random Tuesday balcony", "That hotel you didn't like", "The airport, obviously"],
     hidden_note: "The lights below looked like a small city built just for us. Maybe they were.",
   },
 ];
+
+export const allPhotos: string[] = Array.from({ length: 50 }, (_, i) => `/photos/photo_${i + 1}.jpg`);

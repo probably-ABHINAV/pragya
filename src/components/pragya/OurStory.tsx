@@ -17,7 +17,7 @@ function StorySlide({ e, i }: { e: typeof timeline[number]; i: number }) {
       className="relative min-h-[100svh] flex items-center justify-center overflow-hidden snap-start"
     >
       <motion.div className="absolute inset-0" style={{ y, scale }}>
-        <img src={e.photo_url} alt="" className="w-full h-full object-cover" loading="lazy" />
+        <img src={e.photo_url} alt="" className="w-full h-full object-cover object-[center_30%]" loading="lazy" />
       </motion.div>
       <div
         className="absolute inset-0 pointer-events-none"
@@ -43,9 +43,9 @@ function StorySlide({ e, i }: { e: typeof timeline[number]; i: number }) {
 
 export function OurStory() {
   return (
-    <div id="story" data-chapter={4} className="relative">
+    <div id="story" data-chapter={3} className="relative">
       <div className="px-6 py-24 md:py-32">
-        <ChapterHeader index={4} title="Our story, in pieces" subtitle="Turn slowly — every one is a small doorway." />
+        <ChapterHeader index={3} title="Our story, in pieces" subtitle="Turn slowly — every one is a small doorway." />
       </div>
       <div className="snap-y snap-mandatory">
         {timeline.map((e, i) => (

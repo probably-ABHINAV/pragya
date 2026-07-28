@@ -25,7 +25,7 @@ export function MemoryVault() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
   return (
-    <ChapterFrame id="vault" index={5} title="A contact sheet of us" subtitle="Every photograph is a small proof.">
+    <ChapterFrame id="vault" index={4} title="A contact sheet of us" subtitle="Every photograph is a small proof.">
 
       <SectionReveal>
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
@@ -43,7 +43,7 @@ export function MemoryVault() {
               aria-label={`Open photo: ${m.caption}`}
             >
               <div className="aspect-square overflow-hidden">
-                <img src={m.photo_url} alt={m.caption} loading="lazy" className="w-full h-full object-cover grayscale-[0.15] transition duration-700 group-hover:grayscale-0 group-hover:scale-[1.03]" />
+                <img src={m.photo_url} alt={m.caption} loading="lazy" className="w-full h-full object-cover object-[center_20%] grayscale-[0.15] transition duration-700 group-hover:grayscale-0 group-hover:scale-[1.03]" />
               </div>
               <p className="mt-2 sm:mt-3 font-hand text-[oklch(0.32_0.10_30)] text-sm sm:text-base text-center truncate px-1">
                 {m.caption}

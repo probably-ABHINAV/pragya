@@ -9,7 +9,7 @@ export function OurSongs() {
   const audio = useAudio();
   const { playedTracks } = useProgress();
   return (
-    <ChapterFrame id="songs" index={3} title="A catalogue of small sounds" subtitle="Some of what plays in my head when I think of you.">
+    <ChapterFrame id="songs" index={2} title="A catalogue of small sounds" subtitle="Some of what plays in my head when I think of you.">
       <div className="max-w-3xl mx-auto">
         {songs.map((s, i) => {
           const isCurrent = audio.current?.id === s.id;
@@ -21,7 +21,7 @@ export function OurSongs() {
               <div className="group flex items-center gap-4 sm:gap-6 py-6 border-b border-gold/15 last:border-b-0">
                 <span className="font-body text-gold/60 text-xs tabular-nums w-8 shrink-0">{num}</span>
                 <div className="relative shrink-0">
-                  <img src={s.cover_url} alt="" loading="lazy" className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-sm" />
+                  <img src={s.cover_url} alt="" loading="lazy" className="w-16 h-16 sm:w-20 sm:h-20 object-cover object-[center_20%] rounded-sm" />
                   {playing && (
                     <motion.div
                       className="absolute inset-0 rounded-full border-2 border-dashed border-gold/60"
