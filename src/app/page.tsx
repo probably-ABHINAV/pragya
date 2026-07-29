@@ -19,6 +19,7 @@ import { A11yProvider } from "@/components/pragya/A11yPanel";
 import { ProgressProvider } from "@/hooks/useProgress";
 import { ProgressHUD } from "@/components/pragya/ProgressHUD";
 import { AudioProgressBridge } from "@/components/pragya/AudioProgressBridge";
+import { EasterEggProvider } from "@/hooks/useEasterEggs";
 import { useEffect } from "react";
 import { BIRTHDAY } from "@/lib/countdown";
 
@@ -41,7 +42,8 @@ export default function Page() {
       <A11yProvider>
         <ProgressProvider>
           <AudioProvider>
-            <AudioProgressBridge />
+            <EasterEggProvider>
+              <AudioProgressBridge />
             <main id="main" className="bg-harvest min-h-screen scroll-smooth relative">
               <CursorGlow />
               <ChapterRail />
@@ -58,6 +60,7 @@ export default function Page() {
               <Footer />
               <MiniPlayer />
             </main>
+            </EasterEggProvider>
           </AudioProvider>
         </ProgressProvider>
       </A11yProvider>

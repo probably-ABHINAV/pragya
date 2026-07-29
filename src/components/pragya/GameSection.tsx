@@ -1,58 +1,185 @@
 import { useState } from "react";
 import { ChapterFrame } from "./ChapterFrame";
-import { GuessGame } from "./GuessGame";
-import { MemoryMatch } from "./MemoryMatch";
 import { motion, AnimatePresence } from "motion/react";
+import { MemoryMatch } from "./MemoryMatch";
+import { TimelinePuzzle } from "./TimelinePuzzle";
+import { JigsawPuzzle } from "./JigsawPuzzle";
 
-export function GameSection() {
-  const [activeTab, setActiveTab] = useState<"guess" | "memory">("guess");
+type Question = {
+  q: string;
+  options: string[];
+  correctMsg: string;
+  correctIdx?: number;
+  checkAnswer?: (idx: number) => string;
+};
+
+const triviaData = {
+  questions: [
+    {
+      q: "Who would Pragya choose to watch a cricket match with?",
+      options: ["Virat", "Karunya"],
+      checkAnswer: (idx: number) => idx === 0 ? "Probably Virat 😭" : "Incorrect. We both know the truth.",
+    },
+    {
+      q: "Late night emotional call?",
+      options: ["Virat", "Karunya"],
+      checkAnswer: (idx: number) => idx === 1 ? "Karunya wins one point." : "Incorrect. Virat is sleeping.",
+    },
+    {
+      q: "Receive birthday wishes from?",
+      options: ["Virat", "Karunya"],
+      checkAnswer: () => "Hopefully both.",
+    },
+    {
+      q: 'Who usually says "I\'m not angry"?',
+      options: ["Me", "You", "Both", "Nobody"],
+      correctIdx: 1,
+      correctMsg: "Correct! You.",
+    },
+    {
+      q: '"When Pragya sees Virat Kohli..."',
+      options: ["Stays calm", "Behaves normally", "Forgets everyone else exists", "Becomes Prime Minister"],
+      correctIdx: 2,
+      correctMsg: "Correct! I cease to exist.",
+    },
+  ] as Question[]
+};
+
+function TriviaGame() {
+  const [currentQ, setCurrentQ] = useState(0);
+  const [selected, setSelected] = useState<number | null>(null);
+  const [feedback, setFeedback] = useState<string | null>(null);
+
+  const handleSelect = (idx: number) => {
+    if (selected !== null) return;
+    setSelected(idx);
+    const q = triviaData.questions[currentQ];
+    
+    if (q.checkAnswer) {
+      setFeedback(q.checkAnswer(idx));
+    } else {
+      if (idx === q.correctIdx) {
+        setFeedback(q.correctMsg);
+      } else {
+        setFeedback("Try again.");
+      }
+    }
+  };
+
+  const nextQ = () => {
+    setSelected(null);
+    setFeedback(null);
+    setCurrentQ(prev => (prev + 1) % triviaData.questions.length);
+  };
+
+  const q = triviaData.questions[currentQ];
 
   return (
-    <ChapterFrame id="game" index={7} title="A Few Small Games" subtitle="Right answers unfold a secret. Every memory is a match.">
-      <div className="max-w-4xl mx-auto flex justify-center mb-12">
-        <div className="flex bg-parchment/10 p-1 rounded-sm border border-gold/20">
+    <div className="max-w-xl mx-auto p-6 bg-parchment/10 border border-gold/20 shadow-lg relative min-h-[300px] mt-12">
+      <div className="text-center mb-8">
+        <p className="font-display italic text-3xl text-parchment/80">Virat or Karunya?</p>
+        <p className="eyebrow text-gold/60 mt-2">Question {currentQ + 1} of {triviaData.questions.length}</p>
+      </div>
+
+      <h3 className="font-display italic text-2xl sm:text-3xl text-parchment text-center mb-8 drop-shadow-md">
+        {q.q}
+      </h3>
+      
+      <div className="grid gap-3">
+        {q.options.map((opt, idx) => (
           <button
-            onClick={() => setActiveTab("guess")}
-            className={`px-6 py-2 rounded-sm font-body text-[10px] tracking-[0.2em] uppercase transition-all duration-300 ${
-              activeTab === "guess" ? "bg-ember/20 text-gold border border-gold/30 shadow-inner" : "text-parchment/60 hover:text-parchment"
+            key={idx}
+            onClick={() => handleSelect(idx)}
+            className={`w-full text-left px-4 py-3 border transition-colors ${
+              selected === idx 
+                ? "bg-gold/20 border-gold text-parchment"
+                : selected !== null
+                ? "border-gold/10 text-parchment/40 cursor-not-allowed"
+                : "border-gold/20 hover:border-gold/60 text-parchment/80 hover:bg-gold/5"
             }`}
           >
-            Where Were We?
+            <span className="inline-block w-6 text-gold/60 font-body text-xs">{String.fromCharCode(65 + idx)}.</span>
+            {opt}
           </button>
+        ))}
+      </div>
+
+      <AnimatePresence>
+        {feedback && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="mt-6 text-center"
+          >
+            <p className="font-display italic text-xl text-ember drop-shadow-sm mb-4">
+              {feedback}
+            </p>
+            <button
+              onClick={nextQ}
+              className="px-6 py-2 bg-ember/20 text-parchment border border-ember/30 hover:bg-ember/30 transition-colors uppercase tracking-[0.2em] text-xs font-body"
+            >
+              Next
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+const tabs = {
+  memory: {
+    title: "Memory Match",
+    component: MemoryMatch,
+  },
+  timeline: {
+    title: "Timeline Puzzle",
+    component: TimelinePuzzle,
+  },
+  jigsaw: {
+    title: "Jigsaw Puzzle",
+    component: JigsawPuzzle,
+  },
+  trivia: {
+    title: "Virat or Karunya?",
+    component: TriviaGame,
+  }
+};
+
+export function GameSection() {
+  const [activeTab, setActiveTab] = useState<keyof typeof tabs>("memory");
+
+  return (
+    <ChapterFrame id="game" index={7} title="Interactive Memories" subtitle="Some things are better felt than read.">
+      <div className="max-w-4xl mx-auto flex flex-wrap justify-center gap-2 mb-12">
+        {(Object.keys(tabs) as Array<keyof typeof tabs>).map((k) => (
           <button
-            onClick={() => setActiveTab("memory")}
-            className={`px-6 py-2 rounded-sm font-body text-[10px] tracking-[0.2em] uppercase transition-all duration-300 ${
-              activeTab === "memory" ? "bg-ember/20 text-gold border border-gold/30 shadow-inner" : "text-parchment/60 hover:text-parchment"
+            key={k}
+            onClick={() => setActiveTab(k)}
+            className={`px-4 sm:px-6 py-2 rounded-sm font-body text-[10px] sm:text-[11px] tracking-[0.2em] uppercase transition-all duration-300 ${
+              activeTab === k ? "bg-ember/20 text-gold border border-gold/30 shadow-inner" : "text-parchment/60 hover:text-parchment border border-transparent"
             }`}
           >
-            Memory Match
+            {tabs[k].title}
           </button>
-        </div>
+        ))}
       </div>
 
       <div className="relative min-h-[500px]">
         <AnimatePresence mode="wait">
-          {activeTab === "guess" ? (
-            <motion.div
-              key="guess"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.4 }}
-            >
-              <GuessGame />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="memory"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.4 }}
-            >
-              <MemoryMatch />
-            </motion.div>
-          )}
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4 }}
+          >
+            {(() => {
+              const Component = tabs[activeTab].component;
+              return <Component />;
+            })()}
+          </motion.div>
         </AnimatePresence>
       </div>
     </ChapterFrame>

@@ -3,6 +3,7 @@ import { motion, useInView, useScroll, useTransform } from "motion/react";
 import { timeline } from "@/data/pragya";
 import { ChapterHeader } from "./ChapterFrame";
 import { Ornament } from "./Ornament";
+import { HiddenHeart } from "./HiddenHeart";
 
 function StorySlide({ e, i }: { e: typeof timeline[number]; i: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -17,7 +18,7 @@ function StorySlide({ e, i }: { e: typeof timeline[number]; i: number }) {
       className="relative min-h-[100svh] flex items-center justify-center overflow-hidden snap-start"
     >
       <motion.div className="absolute inset-0" style={{ y, scale }}>
-        <img src={e.photo_url} alt="" className="w-full h-full object-cover object-[center_30%]" loading="lazy" />
+        <img src={e.photo_url} alt="" className="w-full h-full object-cover object-center" loading="lazy" />
       </motion.div>
       <div
         className="absolute inset-0 pointer-events-none"
@@ -30,8 +31,8 @@ function StorySlide({ e, i }: { e: typeof timeline[number]; i: number }) {
         transition={{ duration: 1.2, ease: "easeOut" }}
         className="relative z-10 max-w-2xl text-center px-6"
       >
-        <p className="eyebrow mb-6">Moment {String(i + 1).padStart(2, "0")}</p>
-        <p className="font-display italic text-parchment text-3xl sm:text-5xl md:text-6xl leading-tight mb-8">
+        <p className="eyebrow mb-6">Phase {String(i + 1)}</p>
+        <p className="font-display italic text-parchment text-3xl sm:text-5xl md:text-6xl leading-tight mb-8 whitespace-pre-line drop-shadow-lg">
           "{e.caption}"
         </p>
         <div className="flex justify-center"><Ornament className="w-40 text-gold/60" /></div>
@@ -45,6 +46,9 @@ export function OurStory() {
   return (
     <div id="story" data-chapter={3} className="relative">
       <div className="px-6 py-24 md:py-32">
+        <div className="max-w-3xl mx-auto flex justify-end mb-4">
+          <HiddenHeart id={3} message="If you're smiling right now, mission successful." />
+        </div>
         <ChapterHeader index={3} title="Our story, in pieces" subtitle="Turn slowly — every one is a small doorway." />
       </div>
       <div className="snap-y snap-mandatory">

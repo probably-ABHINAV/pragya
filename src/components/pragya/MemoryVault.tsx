@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
 import { memories, type MemoryPhoto } from "@/data/pragya";
 import { ChapterFrame, SectionReveal } from "./ChapterFrame";
+import { HiddenHeart } from "./HiddenHeart";
 
 export function MemoryVault() {
   const [open, setOpen] = useState<MemoryPhoto | null>(null);
@@ -26,9 +27,12 @@ export function MemoryVault() {
   }, [open]);
   return (
     <ChapterFrame id="vault" index={4} title="A contact sheet of us" subtitle="Every photograph is a small proof.">
+      <div className="max-w-5xl mx-auto flex justify-end mb-4 px-4">
+        <HiddenHeart id={4} message="You looked beautiful today too." />
+      </div>
 
       <SectionReveal>
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 px-4 md:px-0">
           {memories.map((m, i) => (
             <motion.button
               key={m.id}
@@ -43,7 +47,7 @@ export function MemoryVault() {
               aria-label={`Open photo: ${m.caption}`}
             >
               <div className="aspect-square overflow-hidden">
-                <img src={m.photo_url} alt={m.caption} loading="lazy" className="w-full h-full object-cover object-[center_20%] grayscale-[0.15] transition duration-700 group-hover:grayscale-0 group-hover:scale-[1.03]" />
+                <img src={m.photo_url} alt={m.caption} loading="lazy" className="w-full h-full object-cover object-center grayscale-[0.15] transition duration-700 group-hover:grayscale-0 group-hover:scale-[1.03]" />
               </div>
               <p className="mt-2 sm:mt-3 font-hand text-[oklch(0.32_0.10_30)] text-sm sm:text-base text-center truncate px-1">
                 {m.caption}
@@ -73,7 +77,7 @@ export function MemoryVault() {
               src={open.photo_url} alt={open.caption}
               className="max-h-[75vh] max-w-full rounded-sm object-contain shadow-2xl"
             />
-            <p className="font-display italic text-parchment text-2xl mt-6 text-center max-w-lg">{open.caption}</p>
+            <p className="font-display italic text-parchment text-xl sm:text-2xl mt-6 text-center max-w-lg">{open.caption}</p>
           </motion.div>
         )}
       </AnimatePresence>

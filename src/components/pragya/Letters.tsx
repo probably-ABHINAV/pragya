@@ -7,6 +7,7 @@ import { useProgress } from "@/hooks/useProgress";
 import { ChapterFrame, SectionReveal } from "./ChapterFrame";
 import { WaxSeal } from "./WaxSeal";
 import { LetterOpen } from "./LetterOpen";
+import { HiddenHeart } from "./HiddenHeart";
 
 function Envelope({ l, i, opened, onOpen }: { l: Letter; i: number; opened: boolean; onOpen: (l: Letter, e: React.MouseEvent) => void }) {
   const unlocked = isUnlocked(l.unlock_date);
@@ -85,6 +86,10 @@ export function Letters() {
 
   return (
     <ChapterFrame id="letters" index={6} title="Letters, in your name" subtitle="Some things I wrote so I'd never forget to say them.">
+      <div className="max-w-4xl mx-auto flex justify-end mb-4 px-4">
+        <HiddenHeart id={6} message="I love you. No puzzle. No joke. Just this." />
+      </div>
+
       <div className="max-w-4xl mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-3">
         {letters.map((l, i) => <Envelope key={l.id} l={l} i={i} opened={openedLetters.has(l.id)} onOpen={handleOpen} />)}
       </div>

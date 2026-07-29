@@ -4,7 +4,7 @@ const silentAudio =
   "data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tQxAADB8AhSmxhIIEVCSiJrDCQBTcu3UrAIwUdkRgQbFAZC1CQEwTJ9mjRvBA4UOLD8nKVOWfh+UlK3z/177OXrfOdKl7pyn3Xf//WreyTRUoAWgBgkOAGbZHBgG1OF6zM82DWbZaUmMBptgQhGjsyYqc9ae9XFz84FfHks148pnfPHvHvHu/8fPvvvvvvzz9frHqf9v6zTWNvvvvvvvvv7vvvvv//7v/vv//7v//7v//7v//7v//7v//7";
 
 export type DailyContent = { day: number; date: string; message: string; voice_note_url: string };
-export type Song = { id: string; title: string; artist: string; audio_url: string; cover_url: string; order: number };
+export type Song = { id: string; title: string; artist: string; audio_url: string; cover_url: string; order: number; why: string };
 export type TimelineEvent = { id: string; date: string; caption: string; photo_url: string; order: number };
 export type MemoryPhoto = { id: string; photo_url: string; caption: string; order: number };
 export type Letter = { id: string; title: string; body: string; unlock_date: string };
@@ -13,7 +13,6 @@ export type GameQuestion = { id: string; photo_url: string; correct_location: st
 const img = (seed: string, w = 800, h = 800) =>
   `https://images.unsplash.com/photo-${seed}?auto=format&fit=crop&w=${w}&h=${h}&q=70`;
 
-// 31 days leading to July 31, 2026 → July 1 through July 31, 2026
 export const dailyContent: DailyContent[] = Array.from({ length: 31 }, (_, i) => {
   const day = i + 1;
   const date = new Date(Date.UTC(2026, 6, day)).toISOString().slice(0, 10);
@@ -45,68 +44,58 @@ export const dailyMessages: string[] = [
 ];
 
 export const songs: Song[] = [
-  { id: "s1", title: "Piyu Bole", artist: "Shreya Ghoshal, Sonu Nigam", audio_url: "/audio/piyu-bole.mp3", cover_url: "/photos/photo_1.jpg", order: 1 },
-  { id: "s2", title: "Pal Pal Dil Ke Paas", artist: "Kishore Kumar", audio_url: "/audio/pal-pal-dil-ke-paas.mp3", cover_url: "/photos/photo_2.jpg", order: 2 },
-  { id: "s3", title: "Aaoge Jab Tum", artist: "Rashid Khan", audio_url: "/audio/aaoge-jab-tum.mp3", cover_url: "/photos/photo_3.jpg", order: 3 },
-  { id: "s4", title: "Tere Naina", artist: "Shafqat Amanat Ali", audio_url: "/audio/tere-naina.mp3", cover_url: "/photos/photo_4.jpg", order: 4 },
-  { id: "s5", title: "Tere Bina", artist: "A.R. Rahman, Chinmayi", audio_url: "/audio/tere-bina.mp3", cover_url: "/photos/photo_5.jpg", order: 5 },
+  { id: "s1", title: "Aaoge Jab Tum", artist: "Rashid Khan", audio_url: "/audio/aaoge-jab-tum.mp3", cover_url: "/photos/photo_3.jpg", order: 1, why: "Because every time we're apart, I still wait for your message." },
+  { id: "s2", title: "Piyu Bole", artist: "Shreya Ghoshal, Sonu Nigam", audio_url: "/audio/piyu-bole.mp3", cover_url: "/photos/photo_1.jpg", order: 2, why: "Because talking to you feels like home." },
+  { id: "s3", title: "Pal Pal Dil Ke Paas", artist: "Kishore Kumar", audio_url: "/audio/pal-pal-dil-ke-paas.mp3", cover_url: "/photos/photo_2.jpg", order: 3, why: "Because distance never changed how close I feel to you." },
 ];
 
 export const timeline: TimelineEvent[] = [
-  { id: "t1", date: "The first message", caption: "It started with something small and stupid, and you replied anyway.", photo_url: "/photos/photo_6.jpg", order: 1 },
-  { id: "t2", date: "That first walk", caption: "We got lost on purpose. I remember the light more than the streets.", photo_url: "/photos/photo_7.jpg", order: 2 },
-  { id: "t3", date: "Our first trip", caption: "You fell asleep on my shoulder and I stopped moving for two hours.", photo_url: "/photos/photo_8.jpg", order: 3 },
-  { id: "t4", date: "The rainy night", caption: "Wet coats, warm hands, one shared umbrella that didn't really work.", photo_url: "/photos/photo_9.jpg", order: 4 },
-  { id: "t5", date: "This year, with you", caption: "Every ordinary evening quietly turned into something I want to keep.", photo_url: "/photos/photo_10.jpg", order: 5 },
+  { id: "t1", date: "Phase 1: The Stranger", caption: "We met in school.\n\nAt that time I had absolutely no idea that this girl would one day become one of the most important people in my life.", photo_url: "/photos/photo_6.jpg", order: 1 },
+  { id: "t2", date: "Phase 2: The Friend", caption: "It started with simple conversations.\n\nNothing extraordinary.\n\nJust enough to make me look forward to talking to you again.", photo_url: "/photos/photo_7.jpg", order: 2 },
+  { id: "t3", date: "Phase 3: The Enemy", caption: "Somehow we became enemies.\n\nHonestly, if someone had told me then that I would fall in love with you one day, I would've laughed.", photo_url: "/photos/photo_8.jpg", order: 3 },
+  { id: "t4", date: "Phase 4: The Return", caption: "Life has a funny way of bringing people back.\n\nAnd thankfully, it brought you back.", photo_url: "/photos/photo_9.jpg", order: 4 },
+  { id: "t5", date: "Phase 5: Best Friends", caption: "This is where everything changed.\n\nYou became the person I wanted to tell everything to.", photo_url: "/photos/photo_10.jpg", order: 5 },
+  { id: "t6", date: "Phase 6: Love", caption: "No dramatic movie scene.\n\nNo perfect moment.\n\nJust thousands of little moments that slowly became love.", photo_url: "/photos/photo_11.jpg", order: 6 },
+  { id: "t7", date: "Phase 7: Us", caption: "Distance.\nMisunderstandings.\nUps and downs.\n\nYet somehow,\nwe always find our way back to each other.", photo_url: "/photos/photo_12.jpg", order: 7 },
 ];
 
 export const memories: MemoryPhoto[] = [
-  { id: "m1", photo_url: "/photos/photo_11.jpg", caption: "Golden hour, borrowed sweater.", order: 1 },
-  { id: "m2", photo_url: "/photos/photo_12.jpg", caption: "You, laughing at nothing.", order: 2 },
-  { id: "m3", photo_url: "/photos/photo_13.jpg", caption: "The look I never got tired of.", order: 3 },
-  { id: "m4", photo_url: "/photos/photo_14.jpg", caption: "First coffee, quiet morning.", order: 4 },
-  { id: "m5", photo_url: "/photos/photo_15.jpg", caption: "Somewhere near the water.", order: 5 },
-  { id: "m6", photo_url: "/photos/photo_16.jpg", caption: "The one I keep as my wallpaper.", order: 6 },
-  { id: "m7", photo_url: "/photos/photo_17.jpg", caption: "Every ordinary Tuesday.", order: 7 },
-  { id: "m8", photo_url: "/photos/photo_18.jpg", caption: "You, and the whole rest of the frame.", order: 8 },
+  { id: "m1", photo_url: "/photos/photo_11.jpg", caption: "The girl who has no idea how much she's loved.", order: 1 },
+  { id: "m2", photo_url: "/photos/photo_12.jpg", caption: "Probably thinking about Virat Kohli.", order: 2 },
+  { id: "m3", photo_url: "/photos/photo_13.jpg", caption: "The reason my screen time is so high.", order: 3 },
+  { id: "m4", photo_url: "/photos/photo_14.jpg", caption: "One of my favourite smiles.", order: 4 },
+  { id: "m5", photo_url: "/photos/photo_15.jpg", caption: "The girl who turned ordinary days into memories.", order: 5 },
+  { id: "m6", photo_url: "/photos/photo_16.jpg", caption: "My safe place.", order: 6 },
+  { id: "m7", photo_url: "/photos/photo_17.jpg", caption: "My best friend.", order: 7 },
+  { id: "m8", photo_url: "/photos/photo_18.jpg", caption: "Birthday Girl ❤️", order: 8 },
 ];
 
 export const letters: Letter[] = [
   {
     id: "l1",
-    title: "Read me first",
-    body: "Pragya,\n\nI don't always find the right words when you're in the room. So I put a few here, where I can be brave and quiet at the same time. Everything I want to say starts with: I am so glad it's you.\n\nYours,\nMe",
+    title: "What You Don't Know",
+    body: "I still smile when your name appears on my phone.\n\nYou're still the first person I want to tell good news to.\n\nYou have no idea how proud I am of you.",
     unlock_date: "2026-07-01",
   },
   {
     id: "l2",
-    title: "The soft one",
-    body: "For every small thing you do that you don't think anyone notices — I notice. All of it. The way you hum before coffee, the way you fix your hair when you're thinking. I keep those, quietly.\n\nAlways,\nMe",
+    title: "Thank You",
+    body: "Thank you for staying.\n\nThank you for understanding me.\n\nThank you for choosing us during difficult phases.",
     unlock_date: "2026-07-15",
   },
   {
     id: "l3",
-    title: "For your birthday",
-    body: "Happy birthday, my love.\n\nA whole year of us again, and I would sign up for a hundred more without reading the terms. Whatever this year brings, I'm walking into it holding your hand.\n\nHappy birthday, Pragya. All of me, all of it, all yours.",
+    title: "The Future",
+    body: "I don't know exactly what our future looks like.\n\nBut I know I want you in it.",
     unlock_date: "2026-07-31",
   },
 ];
 
-export const gameQuestions: GameQuestion[] = [
-  {
-    id: "g1",
-    photo_url: "/photos/photo_19.jpg",
-    correct_location: "That trip we almost missed the train for",
-    wrong_options: ["The rooftop in December", "Your parents' garden", "The little café near your place"],
-    hidden_note: "You were wearing that jacket I love. I remember thinking, 'don't ever forget this.'",
-  },
-  {
-    id: "g2",
-    photo_url: "/photos/photo_20.jpg",
-    correct_location: "The rooftop, our anniversary",
-    wrong_options: ["Random Tuesday balcony", "That hotel you didn't like", "The airport, obviously"],
-    hidden_note: "The lights below looked like a small city built just for us. Maybe they were.",
-  },
-];
-
 export const allPhotos: string[] = Array.from({ length: 50 }, (_, i) => `/photos/photo_${i + 1}.jpg`);
+
+export const memoryMatchPairs = [
+  { id: "p1", photo1: "/photos/photo_20.jpg", photo2: "/photos/photo_21.jpg", message: "Look how far we've come." },
+  { id: "p2", photo1: "/photos/photo_22.jpg", photo2: "/photos/photo_23.jpg", message: "From first texts to 2AM calls." },
+  { id: "p3", photo1: "/photos/photo_24.jpg", photo2: "/photos/photo_25.jpg", message: "Sorry Virat, she chose me this time." },
+  { id: "p4", photo1: "/photos/photo_26.jpg", photo2: "/photos/photo_27.jpg", message: "Perfect Match ❤️" },
+];
