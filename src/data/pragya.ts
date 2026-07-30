@@ -7,7 +7,7 @@ export type DailyContent = { day: number; date: string; message: string; voice_n
 export type Song = { id: string; title: string; artist: string; audio_url: string; cover_url: string; order: number; why: string };
 export type TimelineEvent = { id: string; date: string; caption: string; photo_url: string; order: number };
 export type MemoryPhoto = { id: string; photo_url: string; caption: string; order: number };
-export type Letter = { id: string; title: string; body: string; unlock_date: string };
+export type Letter = { id: string; title: string; body: string; image_url?: string; unlock_date: string };
 export type GameQuestion = { id: string; photo_url: string; correct_location: string; wrong_options: string[]; hidden_note: string };
 
 const img = (seed: string, w = 800, h = 800) =>
@@ -47,6 +47,8 @@ export const songs: Song[] = [
   { id: "s1", title: "Aaoge Jab Tum", artist: "Rashid Khan", audio_url: "/audio/aaoge-jab-tum.mp3", cover_url: "/photos/photo_3.jpg", order: 1, why: "Because every time we're apart, I still wait for your message." },
   { id: "s2", title: "Piyu Bole", artist: "Shreya Ghoshal, Sonu Nigam", audio_url: "/audio/piyu-bole.mp3", cover_url: "/photos/photo_1.jpg", order: 2, why: "Because talking to you feels like home." },
   { id: "s3", title: "Pal Pal Dil Ke Paas", artist: "Kishore Kumar", audio_url: "/audio/pal-pal-dil-ke-paas.mp3", cover_url: "/photos/photo_2.jpg", order: 3, why: "Because distance never changed how close I feel to you." },
+  { id: "s4", title: "Tere Bina", artist: "A.R. Rahman", audio_url: "/audio/tere-bina.mp3", cover_url: "/photos/photo_4.jpg", order: 4, why: "Because every drive is better with you singing this." },
+  { id: "s5", title: "Tere Naina", artist: "Shafqat Amanat Ali", audio_url: "/audio/tere-naina.mp3", cover_url: "/photos/photo_5.jpg", order: 5, why: "Because your eyes say everything." },
 ];
 
 export const timeline: TimelineEvent[] = [
@@ -74,19 +76,29 @@ export const letters: Letter[] = [
   {
     id: "l1",
     title: "What You Don't Know",
-    body: "I still smile when your name appears on my phone.\n\nYou're still the first person I want to tell good news to.\n\nYou have no idea how proud I am of you.",
+    body: "",
+    image_url: "/audio/Heart_1.jpeg",
     unlock_date: "2026-07-01",
   },
   {
     id: "l2",
     title: "Thank You",
-    body: "Thank you for staying.\n\nThank you for understanding me.\n\nThank you for choosing us during difficult phases.",
+    body: "",
+    image_url: "/audio/Heart_2.jpeg",
     unlock_date: "2026-07-15",
   },
   {
     id: "l3",
     title: "The Future",
-    body: "I don't know exactly what our future looks like.\n\nBut I know I want you in it.",
+    body: "",
+    image_url: "/audio/Heart_3.jpeg",
+    unlock_date: "2026-07-31",
+  },
+  {
+    id: "l4",
+    title: "P.S.",
+    body: "",
+    image_url: "/audio/Heart_4.jpeg",
     unlock_date: "2026-07-31",
   },
 ];

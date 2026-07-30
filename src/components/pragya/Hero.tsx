@@ -17,6 +17,7 @@ export function Hero() {
   }, []);
 
   const t = diffParts(BIRTHDAY, now);
+  const isBirthday = now >= BIRTHDAY;
 
   return (
     <section id="hero" data-chapter={1} className="relative min-h-[100svh] bg-harvest grain vignette overflow-hidden flex items-center justify-center px-6 pt-20 pb-16">
@@ -143,27 +144,55 @@ export function Hero() {
           className="mt-8 flex flex-col items-center"
         >
           {mounted ? (
-            <div className="flex items-baseline gap-3 sm:gap-5 md:gap-7 font-display italic text-gold scale-75 sm:scale-100">
-              <div className="flex flex-col items-center">
-                <span className="text-4xl sm:text-5xl md:text-6xl tabular-nums leading-none">{String(t.days).padStart(3, "0")}</span>
-                <span className="eyebrow mt-3 text-[10px] sm:text-xs text-parchment/60 uppercase tracking-[0.3em]">Days</span>
+            isBirthday ? (
+              <div className="text-center font-body text-parchment/80">
+                <p className="font-display italic text-2xl sm:text-3xl text-gold mb-4 drop-shadow-md">
+                  She turns 20 today.
+                </p>
+                <p className="mb-6 leading-relaxed">
+                  That is 7,305 days, 175,320 hours, and 10,519,200 minutes of life.
+                </p>
+                <div className="bg-parchment/5 border border-gold/20 p-4 inline-block rounded-sm">
+                  <p className="eyebrow text-gold/60 mb-3">Age Breakdown</p>
+                  <div className="grid grid-cols-3 gap-6 text-sm">
+                    <div>
+                      <p className="text-gold text-xl sm:text-2xl font-display italic">7,305</p>
+                      <p className="eyebrow mt-1 text-parchment/50">Days</p>
+                    </div>
+                    <div>
+                      <p className="text-gold text-xl sm:text-2xl font-display italic">175,320</p>
+                      <p className="eyebrow mt-1 text-parchment/50">Hours</p>
+                    </div>
+                    <div>
+                      <p className="text-gold text-xl sm:text-2xl font-display italic">10,519,200</p>
+                      <p className="eyebrow mt-1 text-parchment/50">Minutes</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <span className="text-3xl sm:text-4xl md:text-5xl text-gold/30 -translate-y-4">:</span>
-              <div className="flex flex-col items-center">
-                <span className="text-4xl sm:text-5xl md:text-6xl tabular-nums leading-none">{String(t.hours).padStart(2, "0")}</span>
-                <span className="eyebrow mt-3 text-[10px] sm:text-xs text-parchment/60 uppercase tracking-[0.3em]">Hours</span>
+            ) : (
+              <div className="flex items-baseline gap-3 sm:gap-5 md:gap-7 font-display italic text-gold scale-75 sm:scale-100">
+                <div className="flex flex-col items-center">
+                  <span className="text-4xl sm:text-5xl md:text-6xl tabular-nums leading-none">{String(t.days).padStart(3, "0")}</span>
+                  <span className="eyebrow mt-3 text-[10px] sm:text-xs text-parchment/60 uppercase tracking-[0.3em]">Days</span>
+                </div>
+                <span className="text-3xl sm:text-4xl md:text-5xl text-gold/30 -translate-y-4">:</span>
+                <div className="flex flex-col items-center">
+                  <span className="text-4xl sm:text-5xl md:text-6xl tabular-nums leading-none">{String(t.hours).padStart(2, "0")}</span>
+                  <span className="eyebrow mt-3 text-[10px] sm:text-xs text-parchment/60 uppercase tracking-[0.3em]">Hours</span>
+                </div>
+                <span className="text-3xl sm:text-4xl md:text-5xl text-gold/30 -translate-y-4">:</span>
+                <div className="flex flex-col items-center">
+                  <span className="text-4xl sm:text-5xl md:text-6xl tabular-nums leading-none">{String(t.minutes).padStart(2, "0")}</span>
+                  <span className="eyebrow mt-3 text-[10px] sm:text-xs text-parchment/60 uppercase tracking-[0.3em]">Mins</span>
+                </div>
+                <span className="text-3xl sm:text-4xl md:text-5xl text-gold/30 -translate-y-4">:</span>
+                <div className="flex flex-col items-center">
+                  <span className="text-4xl sm:text-5xl md:text-6xl tabular-nums leading-none">{String(t.seconds).padStart(2, "0")}</span>
+                  <span className="eyebrow mt-3 text-[10px] sm:text-xs text-parchment/60 uppercase tracking-[0.3em]">Secs</span>
+                </div>
               </div>
-              <span className="text-3xl sm:text-4xl md:text-5xl text-gold/30 -translate-y-4">:</span>
-              <div className="flex flex-col items-center">
-                <span className="text-4xl sm:text-5xl md:text-6xl tabular-nums leading-none">{String(t.minutes).padStart(2, "0")}</span>
-                <span className="eyebrow mt-3 text-[10px] sm:text-xs text-parchment/60 uppercase tracking-[0.3em]">Mins</span>
-              </div>
-              <span className="text-3xl sm:text-4xl md:text-5xl text-gold/30 -translate-y-4">:</span>
-              <div className="flex flex-col items-center">
-                <span className="text-4xl sm:text-5xl md:text-6xl tabular-nums leading-none">{String(t.seconds).padStart(2, "0")}</span>
-                <span className="eyebrow mt-3 text-[10px] sm:text-xs text-parchment/60 uppercase tracking-[0.3em]">Secs</span>
-              </div>
-            </div>
+            )
           ) : (
             <div className="h-[72px] sm:h-[88px] flex items-center justify-center">
               <span className="text-gold/40 text-lg font-display italic tracking-widest">Calculating time...</span>

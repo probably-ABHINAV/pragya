@@ -67,7 +67,7 @@ export function MovieReel() {
               <img
                 src={slides[currentIndex].content}
                 alt="Memory film"
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-contain object-center"
               />
               {/* Cinematic overlay vignette */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.7)_100%)] pointer-events-none" />

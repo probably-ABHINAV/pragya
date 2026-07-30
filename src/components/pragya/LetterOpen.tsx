@@ -274,19 +274,25 @@ export function LetterOpen({
             initial={{ opacity: 0 }}
             animate={unfolded ? { opacity: 1 } : {}}
             transition={{ delay: 0.8, duration: 0.9 }}
-            className="font-display italic text-xl sm:text-2xl leading-[1.55] whitespace-pre-line drop-cap"
+            className={`font-display italic text-xl sm:text-2xl leading-[1.55] whitespace-pre-line ${letter.image_url ? '' : 'drop-cap'}`}
           >
-            {letter.body}
+            {letter.image_url ? (
+              <img src={letter.image_url} alt={letter.title} className="w-full h-auto rounded-sm shadow-md" />
+            ) : (
+              letter.body
+            )}
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={unfolded ? { opacity: 1 } : {}}
-            transition={{ delay: 1.1, duration: 0.8 }}
-            className="mt-6 text-right font-hand text-2xl text-[oklch(0.42_0.14_40)]"
-          >
-            — P.
-          </motion.div>
+          {!letter.image_url && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={unfolded ? { opacity: 1 } : {}}
+              transition={{ delay: 1.1, duration: 0.8 }}
+              className="mt-6 text-right font-hand text-2xl text-[oklch(0.42_0.14_40)]"
+            >
+              — P.
+            </motion.div>
+          )}
 
           {/* Continue cue — fades in once the letter has been read */}
           <motion.div

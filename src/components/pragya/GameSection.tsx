@@ -16,31 +16,34 @@ type Question = {
 const triviaData = {
   questions: [
     {
-      q: "Who would Pragya choose to watch a cricket match with?",
-      options: ["Virat", "Karunya"],
-      checkAnswer: (idx: number) => idx === 0 ? "Probably Virat 😭" : "Incorrect. We both know the truth.",
-    },
-    {
-      q: "Late night emotional call?",
-      options: ["Virat", "Karunya"],
-      checkAnswer: (idx: number) => idx === 1 ? "Karunya wins one point." : "Incorrect. Virat is sleeping.",
-    },
-    {
-      q: "Receive birthday wishes from?",
-      options: ["Virat", "Karunya"],
-      checkAnswer: () => "Hopefully both.",
-    },
-    {
-      q: 'Who usually says "I\'m not angry"?',
-      options: ["Me", "You", "Both", "Nobody"],
+      q: "Who is the third wheel in our relationship?",
+      options: ["Nobody", "Virat Kohli", "School", "Mobile Network"],
       correctIdx: 1,
-      correctMsg: "Correct! You.",
+      correctMsg: "Dear Virat, thank you for your cooperation. 😂",
     },
     {
-      q: '"When Pragya sees Virat Kohli..."',
-      options: ["Stays calm", "Behaves normally", "Forgets everyone else exists", "Becomes Prime Minister"],
+      q: "What is stronger?",
+      options: ["Distance", "Misunderstandings", "Time", "Us"],
+      correctIdx: 3,
+      correctMsg: "Us. Always. ❤️",
+    },
+    {
+      q: "When Pragya sends 'Okay.' it usually means:",
+      options: ["Okay", "Okay", "Definitely okay", "Investigate further"],
+      correctIdx: 3,
+      correctMsg: "Historical evidence suggests: Investigate further. 😂",
+    },
+    {
+      q: "Strangers → Friends → Enemies → Friends Again → Best Friends → ?",
+      options: ["Strangers Again", "More fights", "Love", "Nothing"],
       correctIdx: 2,
-      correctMsg: "Correct! I cease to exist.",
+      correctMsg: "And if I had to start over, I'd still choose the same ending. ❤️",
+    },
+    {
+      q: "If Virat Kohli and Karunya called at the same time, who gets picked first?",
+      options: ["Virat", "Karunya", "Conference Call", "Depends on Virat's batting form"],
+      correctIdx: 3,
+      correctMsg: "Honestly... fair enough. 😂",
     },
   ] as Question[]
 };
@@ -77,7 +80,7 @@ function TriviaGame() {
   return (
     <div className="max-w-xl mx-auto p-6 bg-parchment/10 border border-gold/20 shadow-lg relative min-h-[300px] mt-12">
       <div className="text-center mb-8">
-        <p className="font-display italic text-3xl text-parchment/80">Virat or Karunya?</p>
+        <p className="font-display italic text-3xl text-parchment/80">Question Game</p>
         <p className="eyebrow text-gold/60 mt-2">Question {currentQ + 1} of {triviaData.questions.length}</p>
       </div>
 
@@ -142,7 +145,7 @@ const tabs = {
     component: JigsawPuzzle,
   },
   trivia: {
-    title: "Virat or Karunya?",
+    title: "Question Game",
     component: TriviaGame,
   }
 };
