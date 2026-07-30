@@ -45,6 +45,36 @@ const triviaData = {
       correctIdx: 3,
       correctMsg: "Honestly... fair enough. 😂",
     },
+    {
+      q: 'When I say "5 more minutes" on a late-night call, how long does it actually mean?',
+      options: ["5 minutes", "15 minutes", "1 hour", "Until one of us falls asleep"],
+      correctIdx: 3,
+      correctMsg: "And I wouldn't have it any other way. ❤️",
+    },
+    {
+      q: "Who is more likely to start an argument over absolutely nothing?",
+      options: ["Me", "You", "Virat Kohli", "Both of us"],
+      correctIdx: 1,
+      correctMsg: "And somehow, I'm always the one apologizing! 😂",
+    },
+    {
+      q: "What was my initial reaction when you started talking endlessly about Virat?",
+      options: ["Jealousy", "Confusion", "Pure Acceptance", "I started watching cricket"],
+      correctIdx: 2,
+      correctMsg: "I quickly realized I couldn't compete with the cover drive.",
+    },
+    {
+      q: "What is the most dangerous notification to receive?",
+      options: ["'We need to talk'", "'K.'", "'Have fun'", "All of the above"],
+      correctIdx: 3,
+      correctMsg: "Code Red. Abort mission. Panic. 😂",
+    },
+    {
+      q: "The absolute best part of my day is usually:",
+      options: ["Watching a match", "Sleeping", "Eating", "Seeing your name on my screen"],
+      correctIdx: 3,
+      correctMsg: "Always has been, always will be. ❤️",
+    },
   ] as Question[]
 };
 

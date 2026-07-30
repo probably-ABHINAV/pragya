@@ -25,14 +25,14 @@ export function MemoryMatch() {
       cards.push({
         id: `c1_${idx}`,
         pairId: pair.id,
-        photo_url: pair.photo1,
+        photo_url: pair.photo_url,
         isFlipped: false,
         isMatched: false,
       });
       cards.push({
         id: `c2_${idx}`,
         pairId: pair.id,
-        photo_url: pair.photo2,
+        photo_url: pair.photo_url,
         isFlipped: false,
         isMatched: false,
       });
@@ -122,8 +122,8 @@ export function MemoryMatch() {
     setMatchMessage(null);
     const newCards: Card[] = [];
     memoryMatchPairs.forEach((pair, idx) => {
-      newCards.push({ id: `c1_${idx}`, pairId: pair.id, photo_url: pair.photo1, isFlipped: false, isMatched: false });
-      newCards.push({ id: `c2_${idx}`, pairId: pair.id, photo_url: pair.photo2, isFlipped: false, isMatched: false });
+      newCards.push({ id: `c1_${idx}`, pairId: pair.id, photo_url: pair.photo_url, isFlipped: false, isMatched: false });
+      newCards.push({ id: `c2_${idx}`, pairId: pair.id, photo_url: pair.photo_url, isFlipped: false, isMatched: false });
     });
     setCards(shuffle(newCards));
   };

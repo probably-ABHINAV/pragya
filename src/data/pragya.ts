@@ -106,8 +106,8 @@ export const letters: Letter[] = [
 export const allPhotos: string[] = Array.from({ length: 50 }, (_, i) => `/photos/photo_${i + 1}.jpg`);
 
 export const memoryMatchPairs = [
-  { id: "p1", photo1: "/photos/photo_20.jpg", photo2: "/photos/photo_21.jpg", message: "Look how far we've come." },
-  { id: "p2", photo1: "/photos/photo_22.jpg", photo2: "/photos/photo_23.jpg", message: "From first texts to 2AM calls." },
-  { id: "p3", photo1: "/photos/photo_24.jpg", photo2: "/photos/photo_25.jpg", message: "Sorry Virat, she chose me this time." },
-  { id: "p4", photo1: "/photos/photo_26.jpg", photo2: "/photos/photo_27.jpg", message: "Perfect Match ❤️" },
+  { id: "p1", photo_url: "/photos/photo_20.jpg", message: "The smile that fixes bad days." },
+  { id: "p2", photo_url: "/photos/photo_22.jpg", message: "One of my favourite memories." },
+  { id: "p3", photo_url: "/photos/photo_24.jpg", message: "Proof that good people still exist." },
+  { id: "p4", photo_url: "/photos/photo_26.jpg", message: "A moment worth remembering." },
 ];
