@@ -36,12 +36,12 @@ function StorySlide({ e, i }: { e: typeof timeline[number]; i: number }) {
         <p className="eyebrow">Phase {String(i + 1)}</p>
         
         {/* Full Photo in Polaroid Frame */}
-        <div className="w-full max-w-[85vw] sm:max-w-md relative rounded-sm shadow-2xl bg-parchment p-3 pb-12 sm:p-4 sm:pb-16 rotate-[-1deg] hover:rotate-1 transition-transform duration-700 mx-auto">
+        <div className="w-full max-w-[92vw] sm:max-w-lg md:max-w-xl relative rounded-sm shadow-2xl bg-parchment p-3 pb-12 sm:p-4 sm:pb-16 rotate-[-1deg] hover:rotate-1 transition-transform duration-700 mx-auto">
             <div className="relative w-full bg-black/5 shadow-inner flex items-center justify-center overflow-hidden rounded-[2px]">
                <img 
                  src={e.photo_url} 
                  alt="" 
-                 className="w-full h-auto max-h-[45vh] object-contain" 
+                 className="w-full h-auto max-h-[60vh] object-contain" 
                  loading="lazy" 
                />
             </div>
