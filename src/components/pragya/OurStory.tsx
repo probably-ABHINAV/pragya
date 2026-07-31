@@ -15,28 +15,47 @@ function StorySlide({ e, i }: { e: typeof timeline[number]; i: number }) {
   return (
     <section
       ref={ref}
-      className="relative min-h-[100svh] flex items-center justify-center overflow-hidden snap-start"
+      className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden snap-start py-20 px-4"
     >
+      {/* Blurred background layer */}
       <motion.div className="absolute inset-0" style={{ y, scale }}>
-        <img src={e.photo_url} alt="" className="w-full h-full object-cover object-center" loading="lazy" />
+        <img src={e.photo_url} alt="" className="w-full h-full object-cover object-center blur-xl opacity-30" loading="lazy" />
       </motion.div>
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: "linear-gradient(180deg, oklch(0.22 0.06 30 / 0.65), oklch(0.22 0.06 30 / 0.85))" }}
+        style={{ background: "linear-gradient(180deg, oklch(0.15 0.05 30 / 0.8), oklch(0.12 0.05 30 / 0.95))" }}
       />
       <div className="absolute inset-0 pointer-events-none grain" />
+
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
-        className="relative z-10 max-w-2xl text-center px-6"
+        className="relative z-10 w-full max-w-2xl flex flex-col items-center text-center gap-8 sm:gap-12"
       >
-        <p className="eyebrow mb-6">Phase {String(i + 1)}</p>
-        <p className="font-display italic text-parchment text-3xl sm:text-5xl md:text-6xl leading-tight mb-8 whitespace-pre-line drop-shadow-lg">
-          "{e.caption}"
-        </p>
-        <div className="flex justify-center"><Ornament className="w-40 text-gold/60" /></div>
-        <p className="mt-6 text-gold/80 font-body text-[11px] tracking-[0.35em] uppercase">{e.date}</p>
+        <p className="eyebrow">Phase {String(i + 1)}</p>
+        
+        {/* Full Photo in Polaroid Frame */}
+        <div className="w-full max-w-[85vw] sm:max-w-md relative rounded-sm shadow-2xl bg-parchment p-3 pb-12 sm:p-4 sm:pb-16 rotate-[-1deg] hover:rotate-1 transition-transform duration-700 mx-auto">
+            <div className="relative w-full bg-black/5 shadow-inner flex items-center justify-center overflow-hidden rounded-[2px]">
+               <img 
+                 src={e.photo_url} 
+                 alt="" 
+                 className="w-full h-auto max-h-[45vh] object-contain" 
+                 loading="lazy" 
+               />
+            </div>
+            <p className="absolute bottom-3 sm:bottom-4 left-0 right-0 text-center font-hand text-xl sm:text-2xl text-[oklch(0.35_0.10_30)] drop-shadow-sm">
+              {e.date}
+            </p>
+        </div>
+
+        {/* Caption */}
+        <div className="max-w-xl px-4">
+           <p className="font-display italic text-parchment text-2xl sm:text-3xl md:text-4xl leading-relaxed whitespace-pre-line drop-shadow-lg">
+             "{e.caption}"
+           </p>
+        </div>
       </motion.div>
     </section>
   );
