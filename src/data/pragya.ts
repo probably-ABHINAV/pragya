@@ -72,6 +72,58 @@ export const memories: MemoryPhoto[] = [
   { id: "m8", photo_url: "/photos/photo_18.jpg", caption: "Birthday Girl ❤️", order: 8 },
 ];
 
+export const storyTimeline = [
+  {
+    id: "t1",
+    year: "2018",
+    title: "First Meeting",
+    description: "The day we first met. Who knew what it would turn into.",
+    image_url: "/audio/now1.jpeg",
+  },
+  {
+    id: "t2",
+    year: "2019",
+    title: "Study Friends",
+    description: "Bonding over books, assignments, and everything in between.",
+    image_url: "/audio/now2.jpeg",
+  },
+  {
+    id: "t3",
+    year: "2020",
+    title: "Misunderstanding Phase",
+    description: "A little bump in the road. Even the sun gets covered by clouds sometimes.",
+    image_url: "/audio/now3.jpeg",
+  },
+  {
+    id: "t4",
+    year: "2021",
+    title: "Birthday Message",
+    description: "A special message that changed everything.",
+    image_url: "/audio/now4.jpeg",
+  },
+  {
+    id: "t5",
+    year: "2022",
+    title: "Friends Again",
+    description: "Reconnecting and finding our way back to each other.",
+    image_url: "/audio/now5.jpeg",
+  },
+  {
+    id: "t6",
+    year: "2024",
+    title: "Best Friends",
+    description: "Through thick and thin, always by each other's side.",
+    image_url: "/audio/now6.jpeg",
+  },
+  {
+    id: "t7",
+    year: "2026",
+    title: "Today",
+    description: "And here we are, celebrating you. My world.",
+    image_url: "/audio/now7.jpeg",
+  },
+];
+
 export const letters: Letter[] = [
   {
     id: "l1",
