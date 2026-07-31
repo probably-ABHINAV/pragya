@@ -61,7 +61,7 @@ export function MemoryMatch() {
         });
         
         if (pairData) {
-          // Add a slight delay before showing the popup so they see the match
+          // Show popup immediately to prevent perceived lag
           setTimeout(() => {
             setPopupData({ photo_url: pairData.photo_url, message: pairData.message });
             confetti({
@@ -71,7 +71,7 @@ export function MemoryMatch() {
               colors: EMBER,
               zIndex: 200,
             });
-          }, 400);
+          }, 100);
         } else {
           setFlippedIndices([]);
           setIsLocked(false);
