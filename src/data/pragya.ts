@@ -75,21 +75,21 @@ export const memories: MemoryPhoto[] = [
 export const letters: Letter[] = [
   {
     id: "l1",
-    title: "What You Don't Know",
+    title: "Things I Hope You Never Forget",
     body: "",
     image_url: "/audio/Heart_1.jpeg",
     unlock_date: "2026-07-01",
   },
   {
     id: "l2",
-    title: "Thank You",
+    title: "The Version of You I See",
     body: "",
     image_url: "/audio/Heart_2.jpeg",
     unlock_date: "2026-07-15",
   },
   {
     id: "l3",
-    title: "The Future",
+    title: "For The Girl Turning 20",
     body: "",
     image_url: "/audio/Heart_3.jpeg",
     unlock_date: "2026-07-31",
