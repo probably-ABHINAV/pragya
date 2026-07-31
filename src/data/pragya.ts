@@ -52,13 +52,13 @@ export const songs: Song[] = [
 ];
 
 export const timeline: TimelineEvent[] = [
-  { id: "t1", date: "Phase 1: The Stranger", caption: "We met in school.\n\nAt that time I had absolutely no idea that this girl would one day become one of the most important people in my life.", photo_url: "/photos/photo_6.jpg", order: 1 },
-  { id: "t2", date: "Phase 2: The Friend", caption: "It started with simple conversations.\n\nNothing extraordinary.\n\nJust enough to make me look forward to talking to you again.", photo_url: "/photos/photo_7.jpg", order: 2 },
-  { id: "t3", date: "Phase 3: The Enemy", caption: "Somehow we became enemies.\n\nHonestly, if someone had told me then that I would fall in love with you one day, I would've laughed.", photo_url: "/photos/photo_8.jpg", order: 3 },
-  { id: "t4", date: "Phase 4: The Return", caption: "Life has a funny way of bringing people back.\n\nAnd thankfully, it brought you back.", photo_url: "/photos/photo_9.jpg", order: 4 },
-  { id: "t5", date: "Phase 5: Best Friends", caption: "This is where everything changed.\n\nYou became the person I wanted to tell everything to.", photo_url: "/photos/photo_10.jpg", order: 5 },
-  { id: "t6", date: "Phase 6: Love", caption: "No dramatic movie scene.\n\nNo perfect moment.\n\nJust thousands of little moments that slowly became love.", photo_url: "/photos/photo_11.jpg", order: 6 },
-  { id: "t7", date: "Phase 7: Us", caption: "Distance.\nMisunderstandings.\nUps and downs.\n\nYet somehow,\nwe always find our way back to each other.", photo_url: "/photos/photo_12.jpg", order: 7 },
+  { id: "t1", date: "First Meeting (2018)", caption: "The day we first met.\n\nWho knew what it would turn into.", photo_url: "/audio/now1.jpeg", order: 1 },
+  { id: "t2", date: "Study Friends (2019)", caption: "Bonding over books, assignments, and everything in between.", photo_url: "/audio/now2.jpeg", order: 2 },
+  { id: "t3", date: "Misunderstanding Phase (2020)", caption: "A little bump in the road.\n\nEven the sun gets covered by clouds sometimes.", photo_url: "/audio/now3.jpeg", order: 3 },
+  { id: "t4", date: "Birthday Message (2021)", caption: "A special message that changed everything.", photo_url: "/audio/now4.jpeg", order: 4 },
+  { id: "t5", date: "Friends Again (2022)", caption: "Reconnecting and finding our way back to each other.", photo_url: "/audio/now5.jpeg", order: 5 },
+  { id: "t6", date: "Best Friends (2024)", caption: "Through thick and thin, always by each other's side.", photo_url: "/audio/now6.jpeg", order: 6 },
+  { id: "t7", date: "Today (2026)", caption: "And here we are, celebrating you.\n\nMy world.", photo_url: "/audio/now7.jpeg", order: 7 },
 ];
 
 export const memories: MemoryPhoto[] = [
@@ -70,58 +70,6 @@ export const memories: MemoryPhoto[] = [
   { id: "m6", photo_url: "/photos/photo_16.jpg", caption: "My safe place.", order: 6 },
   { id: "m7", photo_url: "/photos/photo_17.jpg", caption: "My best friend.", order: 7 },
   { id: "m8", photo_url: "/photos/photo_18.jpg", caption: "Birthday Girl ❤️", order: 8 },
-];
-
-export const storyTimeline = [
-  {
-    id: "t1",
-    year: "2018",
-    title: "First Meeting",
-    description: "The day we first met. Who knew what it would turn into.",
-    image_url: "/audio/now1.jpeg",
-  },
-  {
-    id: "t2",
-    year: "2019",
-    title: "Study Friends",
-    description: "Bonding over books, assignments, and everything in between.",
-    image_url: "/audio/now2.jpeg",
-  },
-  {
-    id: "t3",
-    year: "2020",
-    title: "Misunderstanding Phase",
-    description: "A little bump in the road. Even the sun gets covered by clouds sometimes.",
-    image_url: "/audio/now3.jpeg",
-  },
-  {
-    id: "t4",
-    year: "2021",
-    title: "Birthday Message",
-    description: "A special message that changed everything.",
-    image_url: "/audio/now4.jpeg",
-  },
-  {
-    id: "t5",
-    year: "2022",
-    title: "Friends Again",
-    description: "Reconnecting and finding our way back to each other.",
-    image_url: "/audio/now5.jpeg",
-  },
-  {
-    id: "t6",
-    year: "2024",
-    title: "Best Friends",
-    description: "Through thick and thin, always by each other's side.",
-    image_url: "/audio/now6.jpeg",
-  },
-  {
-    id: "t7",
-    year: "2026",
-    title: "Today",
-    description: "And here we are, celebrating you. My world.",
-    image_url: "/audio/now7.jpeg",
-  },
 ];
 
 export const letters: Letter[] = [
