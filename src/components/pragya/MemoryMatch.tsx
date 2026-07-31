@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { X } from "lucide-react";
 import confetti from "canvas-confetti";
 import { memoryMatchPairs } from "@/data/pragya";
 import { HiddenHeart } from "./HiddenHeart";
@@ -14,6 +15,11 @@ type Card = {
   isMatched: boolean;
 };
 
+type PopupData = {
+  photo_url: string;
+  message: string;
+};
+
 function shuffle<T>(a: T[]): T[] {
   return [...a].sort(() => Math.random() - 0.5);
 }
@@ -22,20 +28,8 @@ export function MemoryMatch() {
   const initialCards = useMemo(() => {
     const cards: Card[] = [];
     memoryMatchPairs.forEach((pair, idx) => {
-      cards.push({
-        id: `c1_${idx}`,
-        pairId: pair.id,
-        photo_url: pair.photo_url,
-        isFlipped: false,
-        isMatched: false,
-      });
-      cards.push({
-        id: `c2_${idx}`,
-        pairId: pair.id,
-        photo_url: pair.photo_url,
-        isFlipped: false,
-        isMatched: false,
-      });
+      cards.push({ id: `c1_${idx}`, pairId: pair.id, photo_url: pair.photo_url, isFlipped: false, isMatched: false });
+      cards.push({ id: `c2_${idx}`, pairId: pair.id, photo_url: pair.photo_url, isFlipped: false, isMatched: false });
     });
     return shuffle(cards);
   }, []);
@@ -44,7 +38,9 @@ export function MemoryMatch() {
   const [flippedIndices, setFlippedIndices] = useState<number[]>([]);
   const [isLocked, setIsLocked] = useState(false);
   const [hasWon, setHasWon] = useState(false);
-  const [matchMessage, setMatchMessage] = useState<string | null>(null);
+  
+  // The active popup data when a match is found
+  const [popupData, setPopupData] = useState<PopupData | null>(null);
 
   useEffect(() => {
     if (flippedIndices.length === 2) {
@@ -56,9 +52,6 @@ export function MemoryMatch() {
       if (firstCard.pairId === secondCard.pairId) {
         // Matched
         const pairData = memoryMatchPairs.find((p) => p.id === firstCard.pairId);
-        if (pairData) {
-          setMatchMessage(pairData.message);
-        }
 
         setCards((prev) => {
           const newCards = [...prev];
@@ -67,12 +60,22 @@ export function MemoryMatch() {
           return newCards;
         });
         
-        // Hide message after 3 seconds
-        setTimeout(() => {
-          setMatchMessage(null);
+        if (pairData) {
+          // Add a slight delay before showing the popup so they see the match
+          setTimeout(() => {
+            setPopupData({ photo_url: pairData.photo_url, message: pairData.message });
+            confetti({
+              particleCount: 50,
+              spread: 60,
+              origin: { y: 0.8 },
+              colors: EMBER,
+              zIndex: 200,
+            });
+          }, 400);
+        } else {
           setFlippedIndices([]);
           setIsLocked(false);
-        }, 3000);
+        }
       } else {
         // Not matched
         setTimeout(() => {
@@ -90,7 +93,7 @@ export function MemoryMatch() {
   }, [flippedIndices, cards]);
 
   useEffect(() => {
-    if (cards.length > 0 && cards.every((card) => card.isMatched)) {
+    if (cards.length > 0 && cards.every((card) => card.isMatched) && !popupData) {
       if (!hasWon) {
         setHasWon(true);
         confetti({
@@ -103,7 +106,7 @@ export function MemoryMatch() {
         });
       }
     }
-  }, [cards, hasWon]);
+  }, [cards, hasWon, popupData]);
 
   const handleCardClick = (index: number) => {
     if (isLocked || cards[index].isFlipped || cards[index].isMatched) return;
@@ -116,10 +119,16 @@ export function MemoryMatch() {
     setFlippedIndices((prev) => [...prev, index]);
   };
 
+  const closePopup = () => {
+    setPopupData(null);
+    setFlippedIndices([]);
+    setIsLocked(false);
+  };
+
   const resetGame = () => {
     setHasWon(false);
     setFlippedIndices([]);
-    setMatchMessage(null);
+    setPopupData(null);
     const newCards: Card[] = [];
     memoryMatchPairs.forEach((pair, idx) => {
       newCards.push({ id: `c1_${idx}`, pairId: pair.id, photo_url: pair.photo_url, isFlipped: false, isMatched: false });
@@ -168,22 +177,6 @@ export function MemoryMatch() {
         ))}
       </div>
 
-      <div className="min-h-[80px] flex items-center justify-center">
-        <AnimatePresence mode="wait">
-          {matchMessage && !hasWon && (
-            <motion.div
-              key={matchMessage}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="text-center px-4"
-            >
-              <p className="font-display italic text-xl text-ember drop-shadow-sm">{matchMessage}</p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-
       {hasWon && (
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -207,6 +200,60 @@ export function MemoryMatch() {
           </div>
         </motion.div>
       )}
+
+      {/* MATCH POPUP OVERLAY */}
+      <AnimatePresence>
+        {popupData && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md"
+            onClick={closePopup}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative max-w-md w-full bg-parchment p-4 pb-10 rounded-sm shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={closePopup}
+                className="absolute -top-10 right-0 sm:-right-10 sm:top-0 text-parchment hover:text-white w-8 h-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/40 transition-colors"
+                aria-label="Close popup"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
+              <div className="w-full aspect-[4/3] rounded-sm overflow-hidden border border-black/10 shadow-inner bg-black/5">
+                <img 
+                  src={popupData.photo_url} 
+                  alt="Matched memory" 
+                  className="w-full h-full object-cover" 
+                />
+              </div>
+              
+              <div className="mt-6 text-center px-4">
+                <p className="font-display italic text-2xl text-gold mb-2">It's a Match!</p>
+                <p className="font-hand text-xl text-[oklch(0.35_0.10_30)] drop-shadow-sm leading-snug">
+                  {popupData.message}
+                </p>
+              </div>
+
+              <div className="mt-8 flex justify-center">
+                <button
+                  onClick={closePopup}
+                  className="px-6 py-2 bg-[oklch(0.35_0.10_30)] text-parchment rounded-full text-sm font-body tracking-wider hover:bg-[oklch(0.25_0.10_30)] transition-colors"
+                >
+                  Continue
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
