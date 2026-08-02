@@ -44,10 +44,13 @@ export function MemoryMatch() {
 
   useEffect(() => {
     if (flippedIndices.length === 2) {
-      setIsLocked(true);
       const [firstIndex, secondIndex] = flippedIndices;
       const firstCard = cards[firstIndex];
       const secondCard = cards[secondIndex];
+
+      if (!firstCard || !secondCard || firstCard.isMatched || secondCard.isMatched) return;
+
+      setIsLocked(true);
 
       if (firstCard.pairId === secondCard.pairId) {
         // Matched
